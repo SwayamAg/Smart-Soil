@@ -1,0 +1,221 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: linear-gradient(135deg, #74abe2, #5563de);
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header & Navigation */
+header {
+  padding: 20px;
+  text-align: center;
+  background: transparent;
+}
+header h1 {
+  font-size: 2.5rem;
+  color: #fff;
+}
+nav {
+  margin-top: 10px;
+}
+nav a {
+  color: #fff;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+nav a:hover {
+  color: #ffd700;
+}
+
+/* Floating Card Container */
+.card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  margin: 40px auto;
+  padding: 30px;
+  width: 90%;
+  max-width: 800px;
+  animation: floatIn 1s ease forwards;
+}
+
+/* Animations */
+@keyframes floatIn {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  color: #fff;
+}
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  animation: slideIn 1.2s ease-out;
+}
+.hero p {
+  font-size: 1.5rem;
+  animation: fadeIn 2s ease-out;
+}
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Forms & Auth Containers */
+.auth-container,
+.content form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  margin: 40px auto;
+  width: 90%;
+  max-width: 500px;
+  animation: floatIn 1s ease forwards;
+}
+.auth-container h2,
+.content h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.auth-container input,
+.auth-container button,
+.content form input,
+.content form textarea,
+.content form button {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+.auth-container input:focus,
+.content form input:focus,
+.content form textarea:focus {
+  border-color: #5563de;
+}
+button {
+  background: #5563de;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+button:hover {
+  background: #4353b3;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #fff;
+}
+/* Fixed header styling */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px; /* Adjust as needed */
+  background-color: #fff; /* Change color if desired */
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1000; /* Ensures the header stays on top */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional for visual depth */
+}
+
+/* Styling for the logo inside the header */
+header .logo {
+  display: flex;
+  align-items: center;
+}
+
+header .logo img {
+  height: 40px; /* Adjust based on your design */
+  margin-right: 10px;
+}
+
+/* Navigation link styling */
+header nav {
+  margin-left: auto;
+}
+
+header nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Prevent content from being hidden behind the fixed header */
+body {
+  padding-top: 60px; /* This should match the header's height */
+}
+/* Fixed Footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px; /* Increased height for better spacing */
+  background: #2e7d32; /* Consistent color with header */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  gap: 10px; /* Adds spacing between elements */
+}
+
+/* Footer Logo */
+footer img {
+  height: 40px; /* Adjusted for better visibility */
+  width: auto;
+  margin-right: 10px; /* Space between logo and text */
+}
+
+/* Footer Text */
+footer p {
+  margin: 0;
+  font-size: 1rem;
+  color: #fff;
+  text-align: center;
+}
+

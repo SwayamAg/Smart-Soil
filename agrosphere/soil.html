@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soil Analysis - Agro-Sphere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4CAF50;
+      --primary-light: #81C784;
+      --primary-dark: #2E7D32;
+      --secondary: #795548;
+      --secondary-light: #A1887F;
+      --text: #333333;
+      --text-light: #757575;
+      --background: #F9FFF9;
+      --white: #FFFFFF;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --radius: 12px;
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url('/images/grassback.jpg') no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.6;
+      padding-top: 80px;
+      padding-bottom: 60px;
+      min-height: 100vh;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Fixed Header & Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: rgba(8, 68, 8, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      backdrop-filter: blur(10px);
+      animation: slideIn 0.8s ease-out;
+    }
+    
+    header .logo {
+      display: flex;
+      align-items: center;
+    }
+    
+    header .logo img {
+      height: 50px;
+      margin-right: 12px;
+      transition: var(--transition);
+    }
+    
+    header .logo:hover img {
+      transform: rotate(5deg);
+    }
+    
+    header h1 {
+      font-size: 1.6em;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.5px;
+    }
+    
+    nav {
+      display: flex;
+      gap: 5px;
+    }
+    
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--white);
+      transition: var(--transition);
+      transform: translateX(-50%);
+    }
+    
+    nav a:hover {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    nav a:hover::after {
+      width: 70%;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    /* Page Title */
+    .page-title {
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeIn 1s ease-out;
+    }
+    
+    .page-title h1 {
+      font-size: 2.5em;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .page-title h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 3px;
+    }
+    
+    .page-title p {
+      font-size: 1.1em;
+      color: var(--text-light);
+    }
+
+    /* Analysis Card */
+    .analysis-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 40px;
+      margin-bottom: 30px;
+      animation: fadeIn 1.2s ease-out;
+    }
+    
+    .analysis-card h2 {
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+      font-size: 1.8em;
+      text-align: center;
+    }
+    
+    .analysis-card p {
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+      gap: 10px;
+    }
+    
+    .tab {
+      padding: 12px 25px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 2px solid var(--primary-light);
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .tab.active {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .tab:hover {
+      background: var(--primary-light);
+      color: white;
+    }
+    
+    .tab i {
+      font-size: 1.2em;
+    }
+
+    /* Tab Content */
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Location Form */
+    .location-form {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 30px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text);
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1em;
+      transition: var(--transition);
+    }
+    
+    .form-group input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+      outline: none;
+    }
+    
+    .input-group {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .input-group .form-group {
+      flex: 1;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1em;
+      font-weight: 500;
+      transition: var(--transition);
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+    }
+    
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+    }
+    
+    .btn-secondary {
+      background: var(--secondary);
+      box-shadow: 0 4px 10px rgba(121, 85, 72, 0.3);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--secondary-light);
+      box-shadow: 0 6px 15px rgba(121, 85, 72, 0.4);
+    }
+    
+    .btn-block {
+      display: block;
+      width: 100%;
+    }
+    
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    /* Results Section */
+    .results-section {
+      display: none;
+      animation: fadeIn 1s ease-out;
+    }
+    
+    .results-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 40px;
+      margin-top: 30px;
+      text-align: center;
+    }
+    
+    .results-card h2 {
+      color: var(--primary-dark);
+      margin-bottom: 30px;
+      font-size: 1.8em;
+    }
+    
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+    
+    .result-item {
+      background: rgba(240, 248, 240, 0.8);
+      padding: 25px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .result-item:hover {
+      transform: translateY(-5px);
+      background: rgba(240, 248, 240, 0.95);
+    }
+    
+    .result-item h3 {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      color: var(--primary-dark);
+    }
+    
+    .result-item p {
+      font-size: 2em;
+      font-weight: 600;
+      color: var(--text);
+    }
+    
+    .result-item .unit {
+      font-size: 0.5em;
+      color: var(--text-light);
+    }
+
+    /* Map Container */
+    .map-container {
+      height: 300px;
+      background: #eee;
+      border-radius: var(--radius);
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+    
+    /* Loading Animation */
+    .loading {
+      display: none;
+      text-align: center;
+      padding: 40px;
+      animation: pulse 1.5s infinite;
+    }
+    
+    .loading i {
+      font-size: 3em;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    /* Fixed Footer */
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: rgba(6, 45, 6, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+    
+    footer img {
+      height: 50px;
+      width: auto;
+      margin-right: 15px;
+    }
+    
+    footer p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--white);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      header {
+        padding: 0 15px;
+      }
+      
+      nav a {
+        padding: 6px 10px;
+        font-size: 0.9em;
+      }
+      
+      .analysis-card {
+        padding: 30px 20px;
+      }
+      
+      .tabs {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .tab {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .input-group {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .btn-group {
+        flex-direction: column;
+      }
+    }
+
+    /* Recommendations Section */
+    .recommendations-section {
+      margin-top: 40px;
+      text-align: left;
+    }
+
+    .recommendation-card {
+      background: rgba(240, 248, 240, 0.8);
+      padding: 25px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 30px;
+      transition: var(--transition);
+    }
+
+    .recommendation-card:hover {
+      background: rgba(240, 248, 240, 0.95);
+      transform: translateY(-5px);
+    }
+
+    .recommendation-card h4 {
+      color: var(--primary-dark);
+      margin-bottom: 15px;
+      font-size: 1.2em;
+    }
+
+    .recommendation-card ul {
+      padding-left: 20px;
+    }
+
+    .recommendation-card li {
+      margin-bottom: 10px;
+    }
+
+    .recommendation-card strong {
+      color: var(--primary-dark);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="images/logo.png" alt="Logo" />
+      <h1>AgroSphere</h1>
+    </div>
+    <nav>
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="soil.html"><i class="fas fa-seedling"></i> Soil Analysis</a>
+      <a href="about.html"><i class="fas fa-users"></i> About Us</a>
+      <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="page-title">
+      <h1>Soil Analysis</h1>
+      <p>Get detailed insights about your soil conditions and crop recommendations</p>
+    </div>
+
+    <div class="analysis-card">
+      <h2>Analyze Your Soil</h2>
+      <p>Provide your location to get started with soil analysis. You can either use automatic geolocation or enter coordinates manually.</p>
+      
+      <div class="tabs">
+        <div class="tab active" data-tab="auto-location">
+          <i class="fas fa-location-arrow"></i> Automatic Location
+        </div>
+        <div class="tab" data-tab="manual-location">
+          <i class="fas fa-map-marker-alt"></i> Manual Coordinates
+        </div>
+      </div>
+      
+      <div class="tab-content active" id="auto-location">
+        <div class="location-form">
+          <p>Click the button below to automatically detect your current location.</p>
+          <div class="btn-group">
+            <button id="get-location-btn" class="btn btn-block">
+              <i class="fas fa-location-arrow"></i> Get My Location
+            </button>
+          </div>
+          <div id="auto-location-result" class="form-group" style="margin-top: 20px; display: none;">
+            <label>Your Location:</label>
+            <p id="location-display" style="padding: 12px 15px; background: rgba(255, 255, 255, 0.7); border-radius: 8px; margin-top: 5px;"></p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="manual-location">
+        <div class="location-form">
+          <p>Enter the latitude and longitude coordinates of your location.</p>
+          <div class="input-group">
+            <div class="form-group">
+              <label for="latitude">Latitude</label>
+              <input type="number" id="latitude" placeholder="e.g., 28.6139" step="0.0001" min="-90" max="90">
+            </div>
+            <div class="form-group">
+              <label for="longitude">Longitude</label>
+              <input type="number" id="longitude" placeholder="e.g., 77.2090" step="0.0001" min="-180" max="180">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="btn-group">
+        <button id="analyze-btn" class="btn">
+          <i class="fas fa-search"></i> Analyze Soil
+        </button>
+        <button id="reset-btn" class="btn btn-secondary">
+          <i class="fas fa-redo"></i> Reset
+        </button>
+      </div>
+    </div>
+    
+    <div class="loading" id="loading">
+      <i class="fas fa-spinner fa-spin"></i>
+      <p>Analyzing soil data from satellites...</p>
+    </div>
+    
+    <div class="results-section" id="results-section">
+      <div class="results-card">
+        <h2>Soil Analysis Results</h2>
+        
+        <div class="map-container" id="map" style="width: 100%; height: 300px; margin-bottom: 1rem;">
+          <!-- Map will be injected here -->
+        </div>
+        
+        <div style="margin-bottom: 1rem;">
+          <input type="number" step="any" id="latInput" placeholder="Enter Latitude">
+          <input type="number" step="any" id="lngInput" placeholder="Enter Longitude">
+          <button onclick="updateMap()">Show Manual Location</button>
+        </div>
+        
+        <div class="results-grid">
+          <div class="result-item">
+            <h3>Soil Moisture</h3>
+            <p id="moisture-value">42<span class="unit">%</span></p>
+          </div>
+          <div class="result-item">
+            <h3>Soil pH</h3>
+            <p id="ph-value">6.8</p>
+          </div>
+          <div class="result-item">
+            <h3>Nitrogen Level</h3>
+            <p id="nitrogen-value">68<span class="unit">mg/kg</span></p>
+          </div>
+          <div class="result-item">
+            <h3>Organic Matter</h3>
+            <p id="organic-value">3.2<span class="unit">%</span></p>
+          </div>
+        </div>
+        
+        <h3 style="margin-bottom: 20px; color: var(--primary-dark);">Recommended Crops</h3>
+        <div class="results-grid">
+          <div class="result-item">
+            <h3>Primary Crop</h3>
+            <p id="primary-crop" style="font-size: 1.5em;">Wheat</p>
+          </div>
+          <div class="result-item">
+            <h3>Secondary Crop</h3>
+            <p id="secondary-crop" style="font-size: 1.5em;">Maize</p>
+          </div>
+          <div class="result-item">
+            <h3>Alternative Crop</h3>
+            <p id="alternative-crop" style="font-size: 1.5em;">Soybean</p>
+          </div>
+        </div>
+
+        <div class="recommendations-section">
+          <h3 style="margin: 30px 0 20px; color: var(--primary-dark);">Irrigation Recommendations</h3>
+          <div class="recommendation-card" id="irrigation-recommendations">
+            <!-- Irrigation recommendations will be inserted here dynamically -->
+          </div>
+          
+          <h3 style="margin: 30px 0 20px; color: var(--primary-dark);">Additional Recommendations</h3>
+          <div class="recommendation-card" id="additional-recommendations">
+            <!-- Additional recommendations will be inserted here dynamically -->
+          </div>
+        </div>
+        
+        <div class="btn-group">
+          <button id="download-report" class="btn">
+            <i class="fas fa-download"></i> Download Report
+          </button>
+          <button id="new-analysis" class="btn btn-secondary">
+            <i class="fas fa-redo"></i> New Analysis
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <img src="images/logo.png" alt="Logo" />
+    <p>&copy; 2025 AgroSphere - All Rights Reserved</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Tab switching functionality
+      const tabs = document.querySelectorAll('.tab');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const tabId = tab.getAttribute('data-tab');
+          
+          // Remove active class from all tabs and contents
+          tabs.forEach(t => t.classList.remove('active'));
+          tabContents.forEach(content => content.classList.remove('active'));
+          
+          // Add active class to clicked tab and corresponding content
+          tab.classList.add('active');
+          document.getElementById(tabId).classList.add('active');
+        });
+      });
+      
+      // Get location button functionality
+      const getLocationBtn = document.getElementById('get-location-btn');
+      const locationDisplay = document.getElementById('location-display');
+      const autoLocationResult = document.getElementById('auto-location-result');
+      
+      getLocationBtn.addEventListener('click', () => {
+        if (navigator.geolocation) {
+          getLocationBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Getting Location...';
+          getLocationBtn.disabled = true;
+          
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const lat = position.coords.latitude.toFixed(6);
+              const lng = position.coords.longitude.toFixed(6);
+              
+              locationDisplay.textContent = `Latitude: ${lat}, Longitude: ${lng}`;
+              autoLocationResult.style.display = 'block';
+              
+              getLocationBtn.innerHTML = '<i class="fas fa-check"></i> Location Found';
+              getLocationBtn.disabled = false;
+              
+              // Store the coordinates for analysis
+              window.userLocation = {
+                latitude: lat,
+                longitude: lng
+              };
+            },
+            (error) => {
+              locationDisplay.textContent = `Error: ${error.message}`;
+              autoLocationResult.style.display = 'block';
+              
+              getLocationBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Try Again';
+              getLocationBtn.disabled = false;
+            }
+          );
+        } else {
+          locationDisplay.textContent = "Geolocation is not supported by your browser.";
+          autoLocationResult.style.display = 'block';
+        }
+      });
+      
+      
+      // Reset button functionality
+      resetBtn.addEventListener('click', () => {
+        // Clear all inputs
+        document.getElementById('latitude').value = '';
+        document.getElementById('longitude').value = '';
+        locationDisplay.textContent = '';
+        autoLocationResult.style.display = 'none';
+        getLocationBtn.innerHTML = '<i class="fas fa-location-arrow"></i> Get My Location';
+        getLocationBtn.disabled = false;
+        window.userLocation = null;
+      
+        // Reset active tab to automatic location
+        tabs.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        document.querySelector('[data-tab="auto-location"]').classList.add('active');
+        document.getElementById('auto-location').classList.add('active');
+      });
+    
+      // New analysis button functionality
+      document.getElementById('new-analysis').addEventListener('click', () => {
+        // Hide results and show analysis card
+        resultsSection.style.display = 'none';
+        analysisCard.style.display = 'block';
+      
+        // Reset form
+        resetBtn.click();
+      
+        // Scroll to analysis card
+        analysisCard.scrollIntoView({ behavior: 'smooth' });
+      });
+    
+      // Download report button
+      document.getElementById('download-report').addEventListener('click', () => {
+        generatePDF();
+      });
+    
+      // Function to generate PDF report
+      function generatePDF() {
+        const moisture = document.getElementById('moisture-value').textContent;
+        const ph = document.getElementById('ph-value').textContent;
+        const nitrogen = document.getElementById('nitrogen-value').textContent;
+        const organic = document.getElementById('organic-value').textContent;
+        const primaryCrop = document.getElementById('primary-crop').textContent;
+        const secondaryCrop = document.getElementById('secondary-crop').textContent;
+        const alternativeCrop = document.getElementById('alternative-crop').textContent;
+      
+        // In a real implementation, this would use a PDF generation library
+        // For now, we'll just simulate the download
+        alert(`Generating PDF report with the following data:
+      
+Soil Analysis Results:
+- Moisture: ${moisture}
+- pH: ${ph}
+- Nitrogen: ${nitrogen}
+- Organic Matter: ${organic}
+
+Recommended Crops:
+- Primary: ${primaryCrop}
+- Secondary: ${secondaryCrop}
+- Alternative: ${alternativeCrop}
+
+Your report would include all recommendations and detailed analysis.
+        `);
+      }
+    });
+    
+  function loadMap(lat, lng) {
+    const mapDiv = document.getElementById("map");
+    mapDiv.innerHTML = ""; // Clear previous content
+
+    const iframe = document.createElement("iframe");
+    iframe.width = "100%";
+    iframe.height = "300";
+    iframe.style.border = "0";
+    iframe.style.objectFit = "cover";
+    iframe.loading = "lazy";
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = "no-referrer-when-downgrade";
+    iframe.src = `https://www.google.com/maps?q=${lat},${lng}&output=embed`;
+
+    mapDiv.appendChild(iframe);
+  }
+
+  // Show user's current location on load
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const liveLat = position.coords.latitude;
+        const liveLng = position.coords.longitude;
+        loadMap(liveLat, liveLng);
+      },
+      () => {
+        alert("Couldn't get your location. Please enter manually.");
+      }
+    );
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+
+  // Update map from manual input
+  function updateMap() {
+    const lat = parseFloat(document.getElementById("latInput").value);
+    const lng = parseFloat(document.getElementById("lngInput").value);
+
+    if (!isNaN(lat) && !isNaN(lng)) {
+      loadMap(lat, lng);
+    } else {
+      alert("Please enter valid coordinates.");
+    }
+  }
+
+  </script>
+
+</body>
+</html>
+

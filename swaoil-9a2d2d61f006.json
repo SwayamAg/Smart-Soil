@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "swaoil",
+  "private_key_id": "9a2d2d61f006ad05ecd3eefb902b718d2006899b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDh4Nfeij71gY2g\nqC0OgR9NT8iEImoqacq4dVJlfYPehmb2JusKhqvVsilEkKfN2+b+F9gWwYBNa7iu\nIdhs/q7LGFTkuc3PdRa0GDzemh8tpimMHtc8Hutko0rbYUHLRpN5FdSdlOMv38v4\nG+oH/cl7xRuCrSAVjJXSW7Auox29lVgVN6ln/k7cLLZ7TfHxFE0iNs9PLkTI//1K\njH3eeWMUe54kr96ne868sli8t5hfN+51m3F39ff0O6B3dROD2GuNI6cofup26Pim\nAiG6OEMdwdYJZdUA5qNuE0+rGUKKDYZ5T3e2KcLEtirg7PMhxip8pRXK1BF8SLB+\nAbbyYSg5AgMBAAECggEAEhMgKwhke9hLWT8D5fx6oQDgooQveyfehy6qMoFd90VJ\ngWqBVeULZIz+ZORvbRdq70vAqKeAyRE05MhEDYq+uXU/u9LLb42mzLAA1O4/zvMU\nMYh5QDAYNYQklhP9BBNocyDGU/rJSDgwFfFD47JQ+GTALA+G+Pp4Na5NFZpLY7Nk\nXZDtbVW22qHT1C5NHVYAyTnilqlkS6tqJe8XBWBqfEngyDV5hQSEo0KvlHcpuAoX\nkJ8UDe53jsxjKTSvu5TxGujASXOfP7HGdggSl5C0TUzOtaaQV+AKzhHFcRNQn9gE\n4ji06Nf+pXz9c7nvbOkp18qKA7NXJo3+wuIkNGphZQKBgQD+0eXPzslq+kWU4ypO\ntBHur9VV/Xm5iSH3m0p8TB7pxsAGwV2WzKJKcQTONLLezksQSNH2bJNW+E9m2QRU\nS8HMACM9ycQyWDF8/IsUVxeFlawV3j8ByoPeoTZx632N3/DST5o8zOqehVYAMB+C\niCM9tNtcEwUKE1yWER/uGf2m5QKBgQDi7KI8rkzWS3tMy6UxAO+qrEq16LEwoglz\nzqit5D6IpWZOtbivJgkkCuJUnputadVYka5wx9LhW8x/P947CdPJL3Q3bAk3fP2A\nSNI4nmMyXvcCOuGa60n5VRQNKvowuJQxU3Pu5BOvJwv2kdWrhx5teN8al7UdgQFr\njNk80MsyxQKBgQDx4EtD9gU6hlWF/hsqmcJrznuyI+hnNMQJRF5vndG6Fe4we1ta\nyONDxgPJuDwRQb/+tSCXyHgTFaBI/7YcTcym13qcK+kP4KcY/J8Hr6OkKW4vU8Z6\n7MA/kscbW2zSPr9Y4jaFf/00e1wm0YcXYCITcJjHzUX7SmWYDKlCWWlsAQKBgCIS\nRYm24fKLAshVC0iAS3vkwpLtjS0wJxssPEdfrcP2kZXf0wr5OwYeXD04U0eGTHIv\n7XEhj5gmoF26yTM0Fohuh5SKtBeQvL82L9owbdRyTcQX8ye/jCvTil8vxMDr9dQy\nI4YK2KnDwxgSbXKDpx3ouBbWEGuNoxjy3Os0rk3BAoGAXQ8DjBuDMk0sUYy3/Tpf\nEt2oXF7s9EJGY0hKLCKrft3aAqGqMezgZwIYoiPnAfctATzuYlebrufGc3JwVu24\nBJa7GB8Dp+7p+UfZc4qFf6yne8naqjQwE5Z23JZW5eSw3IO9e20BEJ2PSKYwZou/\nNAvu5oHRQk0YA5HqvZKhOoU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "hackaccino@swaoil.iam.gserviceaccount.com",
+  "client_id": "117437091249305304520",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/hackaccino%40swaoil.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
