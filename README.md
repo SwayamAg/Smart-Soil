@@ -18,7 +18,7 @@ The aim is to support farmers with precise insights for better crop planning and
 - **Google Earth Engine (GEE)**: Satellite data extraction
 - **Machine Learning**: Random Forest, XGBoost
 - **Joblib**: Model serialization
-- **Web Demo**: Streamlit / Flask _(based on your setup)_
+- **Web Demo**: Vercel and Onrender 
 
 ---
 
