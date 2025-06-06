@@ -47,6 +47,15 @@ Here’s how to use **Smart Soil** through the website:
 
 ---
 
+## ⚠️ Note on Frontend Code
+
+The frontend code included in this repository **may not fully match** the current live demo website UI and user experience.  
+The live demo is actively maintained and updated independently to improve functionality and design.
+
+If you run the app locally, expect a simpler or older UI version that might differ from the deployed web interface.
+
+---
+
 ## 🛠️ Technologies Used
 - **Python**: NumPy, Pandas, Scikit-learn, XGBoost, Matplotlib
 - **Google Earth Engine (GEE)**: Satellite data extraction
