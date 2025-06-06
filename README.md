@@ -1,3 +1,4 @@
+
 # 🌾 Smart Soil: Soil Moisture & Crop Prediction Using Satellite Data
 
 ### 🔗 [🌐 Live Demo Website](https://soils.vercel.app/)  
@@ -10,6 +11,39 @@
 - **Classify Crop Types** for agricultural guidance in **India**
 
 The aim is to support farmers with precise insights for better crop planning and irrigation decisions.
+
+---
+
+## 🧪 How the Web App Works (Step-by-Step)
+
+Here’s how to use **Smart Soil** through the website:
+
+### 1️⃣ Register or Sign In
+- **Register** for free — one-time only, no charges.
+- **Sign In** (if already registered): A small fee of **₹5 per login** applies to help sustain the platform.
+
+### 2️⃣ Allow Location Access
+- After login/registration, allow the website to **access your live location**.
+- This is required to fetch real-time satellite data for your area.
+
+### 3️⃣ Navigate to Soil Analysis
+- Click on the **"Soil Analysis"** tab from the dashboard to begin analysis.
+- The backend now starts the data pipeline.
+
+### 4️⃣ Real-Time Satellite Data Extraction
+- Your location coordinates are sent to **Google Earth Engine (GEE)**.
+- GEE fetches the **latest Sentinel-1 and Sentinel-2 data** for that region.
+- Key features like `B4`, `B8`, `NDVI`, `NDWI`, `VH`, and `VV` are extracted.
+
+### 5️⃣ AI-Based Prediction Pipeline
+- Extracted features are passed into two trained models:
+  - 📉 **Model 1**: Predicts **Soil Moisture Level** (via NDWI)
+  - 🌱 **Model 2**: Recommends **best-suited crop** for your location
+
+### 6️⃣ View Results Instantly
+- The output screen shows:
+  - ✅ **Moisture level** (Low / Medium / High)
+  - 🌾 **Recommended crop** for your field
 
 ---
 
