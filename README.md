@@ -94,7 +94,7 @@ python predict.py
 ## 🌐 Live Demo Website
 
 🟢 Check out the deployed web app:  
-**🔗 [https://your-demo-link.com](https://soils.vercel.app/)**  
+**🔗 [Smart-Soil](https://soils.vercel.app/)**  
 Use the interface to:
 - Upload satellite feature data
 - Get real-time soil moisture predictions
